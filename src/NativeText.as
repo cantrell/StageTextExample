@@ -66,6 +66,7 @@ package
 		private var _width:uint, _height:uint;
 		private var snapshot:Bitmap;
 		private var _borderThickness:uint = 0;
+		private var _backgroundColor:uint = 0xffffff;
 		private var _borderColor:uint = 0x000000;
 		private var _borderCornerSize:uint = 0;
 		private var lineMetric:TextLineMetrics;
@@ -138,6 +139,17 @@ package
 		public function get borderThickness():uint
 		{
 			return this._borderThickness;
+		}
+		
+		public function set backgroundColor(backgroundColor:uint):void
+		{
+			this._backgroundColor = backgroundColor;
+			this.render();
+		}
+		
+		public function get backgroundColor():uint
+		{
+			return this._backgroundColor;
 		}
 		
 		public function set borderColor(borderColor:uint):void
@@ -250,6 +262,11 @@ package
 			this.st.text = text;
 		}
 		
+		public function get text():String
+		{
+			return(this.st.text);
+		}
+		
 		public function set textAlign(textAlign:String):void
 		{
 			this.st.textAlign = textAlign;
@@ -347,6 +364,7 @@ package
 			this.calculateHeight();
 			this.st.viewPort = this.getViewPortRectangle();
 			this.drawBorder(this);
+			this.drawBackground(this);
 		}
 		
 		private function getViewPortRectangle():Rectangle
@@ -367,6 +385,12 @@ package
 			s.graphics.endFill();
 		}
 
+		private function drawBackground(s:Sprite):void
+		{
+			s.graphics.beginFill(this._backgroundColor, 1);
+			s.graphics.drawRect(this.borderThickness, this.borderThickness, this.st.viewPort.width, this.st.viewPort.height);
+		}
+		
 		private function calculateHeight():void
 		{
 			var totalFontHeight:Number = this.getTotalFontHeight();
