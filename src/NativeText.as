@@ -250,6 +250,10 @@ package
 			this.st.text = text;
 		}
 		
+		public function get text():String{
+			return this.st.text;
+		}
+
 		public function set textAlign(textAlign:String):void
 		{
 			this.st.textAlign = textAlign;
@@ -257,7 +261,6 @@ package
 		
 		public override function set visible(visible:Boolean):void
 		{
-			this.visible = visible;
 			this.st.visible = visible;
 		}
 		
