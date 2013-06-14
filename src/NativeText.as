@@ -250,6 +250,11 @@ package
 			this.st.text = text;
 		}
 		
+		public function get text():String 
+		{
+			return this.st.text;
+		}
+		
 		public function set textAlign(textAlign:String):void
 		{
 			this.st.textAlign = textAlign;
